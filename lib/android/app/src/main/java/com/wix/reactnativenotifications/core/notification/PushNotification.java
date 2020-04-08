@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import com.facebook.react.bridge.ReactContext;
+import com.wix.reactnativenotifications.R;
 import com.wix.reactnativenotifications.core.AppLaunchHelper;
 import com.wix.reactnativenotifications.core.AppLifecycleFacade;
 import com.wix.reactnativenotifications.core.AppLifecycleFacade.AppVisibilityListener;
@@ -168,6 +169,13 @@ public class PushNotification implements IPushNotification {
             notification.setSmallIcon(iconResId);
         } else {
             notification.setSmallIcon(mContext.getApplicationInfo().icon);
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            int iconColorResId = getAppResourceId("notification_icon_color", "color");
+            if (iconColorResId != 0) {
+                notification.setColor(iconColorResId);
+            }
         }
 
         setUpIconColor(notification);

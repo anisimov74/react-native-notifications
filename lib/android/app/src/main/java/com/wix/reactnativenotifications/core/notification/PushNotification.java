@@ -66,7 +66,6 @@ public class PushNotification implements IPushNotification {
     @Override
     public void onOpened() {
         digestNotification();
-        clearAllNotifications();
     }
 
     @Override
@@ -191,11 +190,6 @@ public class PushNotification implements IPushNotification {
     protected void postNotification(int id, Notification notification) {
         final NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(id, notification);
-    }
-
-    protected void clearAllNotifications() {
-        final NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.cancelAll();
     }
 
     protected int createNotificationId(Notification notification) {

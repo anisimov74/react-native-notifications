@@ -153,6 +153,8 @@ public class PushNotification implements IPushNotification {
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setSound(uri)
                 .setVibrate(new long[] { 1000, 1000})
+                .setPriority(Notification.PRIORITY_HIGH)
+                .setLights(Color.BLUE, 500, 5000)
                 .setAutoCancel(true);
 
         setUpIcon(notification);
@@ -169,6 +171,7 @@ public class PushNotification implements IPushNotification {
             final NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
             channel.enableLights(true);
             channel.enableVibration(true);
+            channel.setShowBadge(true);
             channel.setLightColor(Color.BLUE);
             channel.setSound(uri, audioAttributes);
             notificationManager.createNotificationChannel(channel);
